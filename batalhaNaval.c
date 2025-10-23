@@ -36,36 +36,38 @@ int main() {
     // 1 1 1 1 1
     // 0 0 1 0 0
 
-        int marX;
-    int marY;
-    int mar[10][11] = {
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-    };
+    int mar [10][10];
+    int marX = 0;
+    int marY = 0;
+    int eixoY = 1;
 
-    mar[1][2] = 3;
-    mar[1][3] = 3;
-    mar[1][4] = 3;
-    mar[1][9] = 3;
-    mar[2][9] = 3;
-    mar[3][9] = 3;
+    for ( marX = 0 ; marX < 10 ; marX++ ) { // tabuleiro
+        for ( marY = 0 ; marY < 10 ; marY++ ) {
+            mar[marX][marY] = 0;
+        }
+    }
+    for ( marY = 1 ; marY < 4 ; marY++ ) { // navio 1 (horizontal)
+        mar[1][marY] = 1;
+    }
+    for ( marX = 1 ; marX < 4 ; marX++ ) { // navio 2 (vertical)
+        mar[marX][8] = 2;
+    }
+    for ( marX = 5, marY = 1 ; marX < 8, marY < 4 ; marX++, marY++ ) { // navio 3 (diagonal)
+        mar[marX][marY] = 3;
+    }
+    for ( marX = 1, marY = 6 ; marX < 4, marY > 3 ; marX++, marY-- ) { // navio 3 (diagonal)
+        mar[marX][marY] = 4;
+    }
 
-    printf("Tabuleiro Batalha Naval\n=======================\n\n");
-    printf("   A  B  C  D  E  F  G  H  I  J\n");
-    for( marX = 0 ; marX < 10 ; marX++ ) {
-        for( marY = 0 ; marY < 11 ; marY++ ) {
+    printf("\nTabuleiro Batalha Naval\n=======================\n\n");
+    printf("    A  B  C  D  E  F  G  H  I  J\n");
+    for( marX = 0, eixoY = 1 ; marX < 10, eixoY < 11 ; marX++, eixoY++ ) {
+        printf("%02d  ", eixoY);
+        for( marY = 0 ; marY < 10 ; marY++ ) {
             printf("%d  ", mar[marX][marY]);
         }
         printf("\n");
     };
-
+    printf("\n");
     return 0;
 }
